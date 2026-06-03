@@ -11,9 +11,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
-from dotenv import load_dotenv
 
-load_dotenv()
+try:
+    from dotenv import load_dotenv
+except ImportError:
+    load_dotenv = None
+else:
+    load_dotenv()
 
 try:
     import whitenoise  # noqa: F401
@@ -31,13 +35,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-5z0#1a49u=mm%a@ui*y2r1b77fkq(=@qdt1ei=95f^72=poju^')
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-xmh=%hypcgda6mw)99qtqscr(=j#dp543hupn1nji2&ao3gznc')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'https://pandajobs.onrender.com', '*').split(',')
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(',')
 LOGIN_REDIRECT_URL = 'frontpage'
 LOGOUT_REDIRECT_URL = 'frontpage'
 LOGIN_URL = 'login'
