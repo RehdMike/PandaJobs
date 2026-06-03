@@ -33,6 +33,7 @@ jobs:
         with:
           images: ${{ secrets.DOCKER_USERNAME }}/pandajobs
           tags: |
+            type=raw,value=latest
             type=ref,event=branch
             type=sha,prefix=sha-
 
@@ -55,7 +56,4 @@ jobs:
             exit 1
           fi
 
-          export IMAGE_URL="docker.io/${DOCKER_USERNAME}/pandajobs:sha-${GITHUB_SHA}"
-          ENCODED_IMAGE_URL="$(python -c 'import os, urllib.parse; print(urllib.parse.quote(os.environ["IMAGE_URL"], safe=""))' )"
-
-          curl -fsS -X POST "${RENDER_DEPLOY_HOOK_URL}&imgURL=${ENCODED_IMAGE_URL}"
+          curl -fsS -X POST "${RENDER_DEPLOY_HOOK_URL}"
