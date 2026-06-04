@@ -8,6 +8,8 @@ services:
     plan: starter
     healthCheckPath: /health/
     envVars:
+      - key: DATABASE_URL
+        sync: false
       - key: DJANGO_SECRET_KEY
         sync: false
       - key: DJANGO_DEBUG

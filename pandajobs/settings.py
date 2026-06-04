@@ -19,6 +19,8 @@ except ImportError:
 else:
     load_dotenv()
 
+import dj_database_url
+
 try:
     import whitenoise  # noqa: F401
 except ImportError:
@@ -40,7 +42,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-xmh=%hypcgda6mw)99q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.getenv('pandajobs.onrender.com', '*').split(',')
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(',')
 LOGIN_REDIRECT_URL = 'frontpage'
 LOGOUT_REDIRECT_URL = 'frontpage'
 LOGIN_URL = 'login'
@@ -105,10 +107,11 @@ WSGI_APPLICATION = 'pandajobs.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL', f'sqlite:///{BASE_DIR / "db.sqlite3"}'),
+        conn_max_age=600,
+        ssl_require=True,
+    )
 }
 
 
