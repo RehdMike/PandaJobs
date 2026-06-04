@@ -8,11 +8,8 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-# requirements.txt is currently UTF-16 LE, so normalize it before pip reads it.
-RUN iconv -f UTF-16 -t UTF-8 requirements.txt > requirements.utf8.txt \
-    && pip install --upgrade pip \
-    && pip install -r requirements.utf8.txt \
-    && pip install gunicorn whitenoise
+RUN pip install --upgrade pip \
+    && pip install -r requirements.txt
 
 COPY . .
 
