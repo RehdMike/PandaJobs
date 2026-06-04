@@ -1,6 +1,11 @@
 asgiref==3.11.1
 Django==6.0.6
 gunicorn==26.0.0
+crispy-bootstrap5==2023.10
+django-countries==7.5.1
+django-crispy-forms==2.1
+django-ratelimit==4.1.0
+python-dotenv==1.0.1
 whitenoise==6.11.0
 packaging==26.2
 sqlparse==0.5.5
