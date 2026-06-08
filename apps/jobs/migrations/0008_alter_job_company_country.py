@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='job',
             name='company_country',
-            field=django_countries.fields.CountryField(default='Nigeria', max_length=100),
+            field=django_countries.fields.CountryField(default='NG', max_length=2),
         ),
     ]

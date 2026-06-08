@@ -44,7 +44,7 @@ class Job(models.Model):
     
     company_name = models.CharField(max_length=100)
     company_location = models.CharField(max_length=100, blank=True, null=True)
-    company_country = CountryField(blank_label="(select country)", default="Nigeria")
+    company_country = CountryField(blank_label="(select country)", default="NG")
     company_size = models.CharField(max_length=20, choices=SIZE_CHOICES, default=SIZE_1_9)
     
     salary_min = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
