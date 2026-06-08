@@ -39,13 +39,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='job',
             name='slug',
-            field=models.SlugField(blank=True, max_length=100),
+            field=models.SlugField(blank=True, max_length=100, db_index=False),
         ),
         migrations.RunPython(generate_job_slugs),
         migrations.AlterField(
             model_name='job',
             name='slug',
-            field=models.SlugField(max_length=100, unique=True),
+            field=models.SlugField(max_length=100, unique=True, db_index=False),
         ),
         migrations.AddField(
             model_name='job',

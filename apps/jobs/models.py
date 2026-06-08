@@ -38,7 +38,7 @@ class Job(models.Model):
     )
     
     title = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100, unique=True, blank=True)
+    slug = models.SlugField(max_length=100, unique=True, blank=True, db_index=False)
     summary = models.TextField()
     full_description = models.TextField()
     
